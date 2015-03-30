@@ -204,28 +204,44 @@ describe Spyke::Kaminari::Scopes do
     end
 
     describe '#each_page' do
-      subject { model.all.each_page }
+      subject { model.send(scope).each_page }
 
-      it 'returns an enumerable' do
-        expect(subject.count).to eq(4)
+      context 'all' do
+        let(:scope) { :all }
+
+        it 'returns an enumerable' do
+          expect(subject.count).to eq(4)
+        end
+
+        it 'enumerates through each page' do
+          pages = subject.map(&:current_page)
+
+          expect(pages).to eq([1, 2, 3, 4])
+        end
+
+        it 'can be used to collect all records' do
+          records = subject.flat_map(&:to_a)
+
+          expect(records.count).to eq(16)
+          expect(records.first.name).to eq('The King of Town')
+          expect(records.last.name).to eq('Cinder Block')
+        end
+
+        it 'only makes 1 request per page' do
+          expect { subject.map(&:current_page) }.to change { request_count }.by(4)
+        end
       end
 
-      it 'enumerates through each page' do
-        pages = subject.map(&:current_page)
+      context 'citizens of Strong Badia' do
+        let(:scope) { :strong_badians }
 
-        expect(pages).to eq([1, 2, 3, 4])
-      end
+        it 'can be used to collect all records' do
+          records = subject.flat_map(&:to_a)
 
-      it 'can be used to collect all records' do
-        records = subject.flat_map(&:to_a)
-
-        expect(records.count).to eq(16)
-        expect(records.first.name).to eq('The King of Town')
-        expect(records.last.name).to eq('Cinder Block')
-      end
-
-      it 'only makes 1 request per page' do
-        expect { subject.map(&:current_page) }.to change { request_count }.by(4)
+          expect(records.count).to eq(6)
+          expect(records.first.name).to eq('Strong Mad')
+          expect(records.last.name).to eq('Cinder Block')
+        end
       end
     end
   end
