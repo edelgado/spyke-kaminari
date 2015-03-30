@@ -77,27 +77,4 @@ describe Spyke::Kaminari::Scopes do
       end
     end
   end
-
-  describe 'relation' do
-    subject { model.all.class }
-
-    context 'module included' do
-      it 'is extended with pagination features' do
-        expect(subject).to eq(Spyke::Kaminari::Relation)
-      end
-    end
-
-    context 'module not included' do
-      let(:model) do
-        Class.new(Spyke::Base) do
-          def self.model_name; 'Dangeresque'; end
-          uri 'characters'
-        end
-      end
-
-      it 'is unaffected' do
-        expect(subject).to eq(Spyke::Relation)
-      end
-    end
-  end
 end
