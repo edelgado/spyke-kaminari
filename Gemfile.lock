@@ -1,25 +1,23 @@
 PATH
   remote: .
   specs:
-    spyke-kaminari (0.0.5)
-      activesupport (~> 4)
+    spyke-kaminari (0.0.6)
+      activesupport (>= 4.0.0, < 6.0)
       spyke (>= 3.1)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (4.2.5)
-      activesupport (= 4.2.5)
-      builder (~> 3.1)
-    activesupport (4.2.5)
+    activemodel (5.0.0)
+      activesupport (= 5.0.0)
+    activesupport (5.0.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
-      json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
-      thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.7)
-    builder (3.2.2)
     coderay (1.1.0)
+    concurrent-ruby (1.0.2)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
@@ -28,9 +26,8 @@ GEM
     faraday_middleware (0.10.0)
       faraday (>= 0.7.4, < 0.10)
     i18n (0.7.0)
-    json (1.8.3)
     method_source (0.8.2)
-    minitest (5.8.3)
+    minitest (5.9.0)
     multipart-post (2.0.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -50,9 +47,9 @@ GEM
     rspec-support (3.1.2)
     safe_yaml (1.0.4)
     slop (3.6.0)
-    spyke (4.0.1)
-      activemodel (>= 3.0.0, < 5.0)
-      activesupport (>= 3.0.0, < 5.0)
+    spyke (4.1.1)
+      activemodel (>= 4.0.0, < 6.0)
+      activesupport (>= 4.0.0, < 6.0)
       faraday (>= 0.9.0, < 2.0)
       faraday_middleware (>= 0.9.1, < 2.0)
       uri_template (>= 0.7.0, < 2.0)
@@ -74,4 +71,4 @@ DEPENDENCIES
   webmock (~> 1.20)
 
 BUNDLED WITH
-   1.10.6
+   1.12.5
